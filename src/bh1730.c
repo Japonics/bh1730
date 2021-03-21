@@ -146,22 +146,22 @@ bh1730_t *bh1730_init(int addr)
     int id;
     int r = read_reg(ret, BH1730_ADDR_ID, &id);
     if (!r) {
-        LOG(LL_DEBUG, "Read ID reg error for addr 0x%X", addr);
+        LOG(LL_DEBUG, ("Read ID reg error for addr 0x%X", addr));
         goto err;
     }
     if ((id & 0xF0) != 0x70) {
-        LOG(LL_DEBUG, "Read ID: didn't receive 0x7x but 0x%X", id);
+        LOG(LL_DEBUG, ("Read ID: didn't receive 0x7x but 0x%X", id));
         goto err;
     }
 
     //Reset chip
     r = send_cmd(ret, BH1730_CMD_MAGIC | BH1730_CMD_SPECCMD | BH1730_SPECCMD_RESET, -1);
     if (!r) {
-        LOG(LL_ERROR, "Chip reset reg error for addr 0x%X", addr);
+        LOG(LL_ERROR, ("Chip reset reg error for addr 0x%X", addr));
         goto err;
     }
 
-    LOG(LL_DEBUG, "Device at 0x%X initialized, ID=%X.", addr, id);
+    LOG(LL_DEBUG, ("Device at 0x%X initialized, ID=%X.", addr, id));
 
     return ret;
 err:
