@@ -13,7 +13,9 @@
 // limitations under the License.
 #include <stdio.h>
 #include "bh1730.h"
-#include "mongoose.h"
+#include "mgos.h"
+#include "mgos_debug.h"
+#include "mgos_mongoose.h"
 #include "mgos_i2c.h"
 
 /* Mongoose OS C driver (mJS bindable) for Rohm BH1730 light sensor */
